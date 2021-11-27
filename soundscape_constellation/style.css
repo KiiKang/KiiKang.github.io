@@ -1,0 +1,4 @@
+.dot:hover{
+    stroke-width: 5;
+    transition: 0.3s;
+}
