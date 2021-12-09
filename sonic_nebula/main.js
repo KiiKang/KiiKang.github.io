@@ -1,5 +1,3 @@
-import kNearestNeighbors from './k-nearest-neighbors.js';
-
 // get window size
 var plotDiv = document.getElementById("plot");
 var windowWidth = plotDiv.clientWidth;
@@ -280,6 +278,6 @@ function ConnectedScatterPlot(data, mapMethod) {
 fetch(jsonRequest)
     .then(response => response.json())
     .then(data => {
-        ConnectedScatterPlot(data, "umap");
+        ConnectedScatterPlot(data, "pca");
     })
     .catch(console.error);
