@@ -22,17 +22,17 @@ let jsonRequest = new Request('./json/hfc_.json');
 // node js
 // const fs = Require('fs');
 
-const oscPort = new osc.WebSocketPort({
-    url: "ws://localhost:8081", // URL to your Web Socket server.
-});
-oscPort.open()
-
-var sendOSC = (message) => {
-    oscPort.send({
-        address: "/pts",
-        args: [ { type: "s", value: message } ]
-    });
-}
+// const oscPort = new osc.WebSocketPort({
+//     url: "ws://localhost:8081", // URL to your Web Socket server.
+// });
+// oscPort.open()
+//
+// var sendOSC = (message) => {
+//     oscPort.send({
+//         address: "/pts",
+//         args: [ { type: "s", value: message } ]
+//     });
+// }
 
 function ConnectedScatterPlot(data, mapMethod) {
     var dataFiltered = data.filter( d => {return d.mapMethod === mapMethod})[0]
@@ -130,7 +130,7 @@ function ConnectedScatterPlot(data, mapMethod) {
         // .attr("stroke-width", 0.5)
         .on('mouseover', function(d) {
             console.log(d.id, d.startTime, d.endTime);
-            sendOSC(String(d.id) + ' ' + String(d.startTime) + ' ' + String(d.endTime));
+            // sendOSC(String(d.id) + ' ' + String(d.startTime) + ' ' + String(d.endTime));
             d3.select(this)
                 .transition()
                 .duration(200)
@@ -261,9 +261,9 @@ function ConnectedScatterPlot(data, mapMethod) {
                 return r(d.endTime - d.startTime);
             })
             .style("fill", 'red')
-            .each( function(d) {
-                sendOSC(String(d.id) + ' ' + String(d.startTime) + ' ' + String(d.endTime));
-            })
+            // .each( function(d) {
+            //     sendOSC(String(d.id) + ' ' + String(d.startTime) + ' ' + String(d.endTime));
+            // })
     }
 
     d3.select('#plot')
