@@ -140,7 +140,6 @@ function ConnectedScatterPlot(data, mapMethod) {
                     // return 3 + r(d.endTime - d.startTime);
                     return 10 + 4 * r(d.endTime - d.startTime);
                 })
-
                 .transition()
                 .delay( d.endTime - d.startTime)
                 .duration(300)
