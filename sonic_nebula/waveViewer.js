@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn(e);
     })
 
-    wavesurfer.load('media/birds.wav');
+    wavesurfer.load('media/birds.mp3');
 
     document
         .querySelector('[data-action="play"]')

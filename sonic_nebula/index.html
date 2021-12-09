@@ -4,29 +4,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!DOCTYPE html>
-    <title>thesis_prototype</title>
+    <title>Sonic Nebula</title>
     <link rel="stylesheet" href="style.css">
 
-    <!-- import d3.js -->
+    <!-- import main.js -->
 <!--    <script src="https://d3js.org/d3.v6.js"></script>-->
+    <script src="https://d3js.org/d3.v6.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/d3-selection@3"></script>-->
 
     <!-- import wavesurfer.js -->
-    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@5.2.0/dist/wavesurfer.js"></script>
+    <script type="module", src="main.js"></script>
 
     <!-- import Essentia.js -->
 <!--    <script src="https://cdn.jsdelivr.net/npm/essentia.js@<version>/dist/essentia-wasm.web.js"></script>-->
 <!--    <script src="https://cdn.jsdelivr.net/npm/essentia.js@<version>/dist/essentia.js-*.js"></script>-->
 
+    <!--import OSC-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/osc@2.4.2/dist/osc.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/osc@2.4.2/dist/osc-browser.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/osc@2.4.2/dist/osc-module.min.js"></script>-->
+    <script src="node_modules/osc/dist/osc-browser.min.js"></script>
+    <script src="node_modules/osc/dist/osc-chromeapp.min.js"></script>
+    <script src="node_modules/osc/dist/osc.min.js"></script>
+<!--    <script type="module", src="k-nearest-neighbors.js"></script>-->
+
   </head>
 
-  <body>
-    <select id="methodDropDown"></select>
+  <body itemscope itemtype="http://schema.org/WebApplication">
+    <select id="methodDropDown">
+      <option selected disabled>Mapping Scheme</option>
+    </select>
     <div id="plot"></div>
-    <script src="d3.js"></script>
     <div id="waveform"></div>
     <script src="waveViewer.js"></script>
-    <button onclick="wavesurfer.playPause()">
+    <button data-action="play">
       Play | Pause
     </button>
 
