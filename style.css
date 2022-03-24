@@ -43,6 +43,7 @@ a:hover{
 .section{
     padding: 20px;
     border-bottom: 1px dashed #757575;
+    border-top: 1px dashed #757575;
 }
 
 .button-container{
