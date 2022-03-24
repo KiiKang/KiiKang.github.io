@@ -72,8 +72,29 @@ iframe{
     height: 40.5vw;
 }
 
-.media-container:hover {
-    transition: 0.2s ease;
+.media-container{
+    position: relative;
+}
+
+.media-overlay{
+    color: black;
+    font-size: 0.8rem;
+    padding: 10px;
+
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: linear-gradient(180deg, white, rgba(255, 255, 255, 0));
+}
+
+.media-overlay:hover {
+    transition-delay: 1s;
+    opacity: 1;
+
+    transition: all 0.2s ease-in-out;
 }
 
 button {
@@ -109,6 +130,7 @@ button:hover{
     font-size: 1rem;
     margin-left: 1.5rem;
 }
+
 .description > a{
     color: inherit;
 }
