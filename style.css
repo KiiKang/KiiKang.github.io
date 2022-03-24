@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: "Roboto Mono";
+    word-spacing: -0.2rem;
+    font-size: 1.2rem;
+    background-color: black;
+    color: darkgray;
+    margin: 0;
+    padding: 0;
+}
+
+div{
+    margin: 0;
+    padding: 0;
+}
+
+a:link{
+    color: white;
+    text-decoration: none;
+
+}
+a:visited{
+    color: white;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+    text-decoration-color: yellowgreen;
+}
+
+#container{
+    display: flex;
+}
+#left{
+    position:fixed;
+    width: 28vw;
+    /*min-width: 300px;*/
+}
+.section{
+    padding: 20px;
+    border-bottom: 1px dashed #757575;
+}
+
+.button-container{
+    justify-content: space-around;
+    border: none;
+    display:flex;
+}
+
+p{
+    color: white;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+p.indent{
+    margin-left: 2rem;
+}
+
+#right{
+    position: relative;
+    left: 28vw;
+    width: 72vw;
+}
+iframe{
+    width: 72vw;
+    height: 40.5vw;
+}
+
+.media-container:hover {
+    transition: 0.2s ease;
+}
+
+button {
+    background-color: transparent;
+    border: 1px solid #757575;
+    color: white;
+    font-family: inherit;
+    padding: 10px;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+}
+
+button:hover{
+    box-shadow: 0 0 5px 5px rgba(173, 255, 47, 0.4);
+    transition: 0.2s ease-in-out;
+}
+
+#footer {
+    position: relative;
+    width: 100vw;
+    display: flex;
+    color: #757575;
+    border-top: 1px dashed #757575;
+    margin-top: 80px;
+    font-size: 0.8rem;
+}
+.hidden{
+    display: none;
+}
