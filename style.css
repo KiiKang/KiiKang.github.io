@@ -52,6 +52,7 @@ a:hover{
     display:flex;
 }
 
+
 p{
     color: white;
     margin-top: 0.25rem;
@@ -101,6 +102,17 @@ button:hover{
     margin-top: 80px;
     font-size: 0.8rem;
 }
+
+.description{
+    display: none;
+    color: yellowgreen;
+    font-size: 1rem;
+    margin-left: 1.5rem;
+}
+.description > a{
+    color: inherit;
+}
+
 .hidden{
     display: none;
 }
