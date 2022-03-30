@@ -34,17 +34,23 @@ a:hover{
 
 #container{
     display: flex;
+    /*flex-direction: row;*/
 }
 #left{
-    position:fixed;
+    position:relative;
     width: 28vw;
     /*min-width: 300px;*/
+}
+#right{
+    position: relative;
+    width: 72vw;
 }
 .section{
     padding: 20px;
     border-bottom: 1px dashed #757575;
     border-top: 1px dashed #757575;
 }
+
 
 .button-container{
     justify-content: space-around;
@@ -62,11 +68,8 @@ p.indent{
     margin-left: 2rem;
 }
 
-#right{
-    position: relative;
-    left: 28vw;
-    width: 72vw;
-}
+
+
 iframe{
     width: 72vw;
     height: 40.5vw;
@@ -89,6 +92,8 @@ iframe{
     left: 0;
     opacity: 0;
     background: linear-gradient(180deg, white, rgba(255, 255, 255, 0));
+    hyphens: auto;
+
 }
 
 .media-overlay > a{
@@ -125,10 +130,12 @@ button:hover{
     display: flex;
     color: #757575;
     border-top: 1px dashed #757575;
-    margin-top: 80px;
     font-size: 0.8rem;
 }
-
+#works{
+    position: sticky;
+    top: 104px;
+}
 .description{
     display: none;
     color: yellowgreen;
@@ -142,6 +149,7 @@ button:hover{
 
 .hidden{
     display: none;
+    margin-bottom: 60px;
 }
 
 img{
