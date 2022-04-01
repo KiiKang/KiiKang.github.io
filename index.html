@@ -10,41 +10,37 @@
 
 <div id="container">
     <div class="column" id="left">
+
         <div class="button-container section">
             <button onclick="showDiv('bio')"> BIO </button>
             <button onclick="showDiv('works')"> WORKS </button>
         </div>
+
         <div class="section" id="bio">
-            Wonki Kang(b. Seoul, Korea) is a computational designer, architect, computer scientist, and sound artist currently based in Cambridge, MA.
+            Wonki Kang(b. Seoul, Korea) is a computational designer, architect, web developer, computer scientist, and sound artist currently based in Cambridge, MA.
 
             <br><br>
             <p>CONTACT:</p>
             <p class="indent"><a href="mailto: kwkng@mit.edu">kwkng [at] mit [dot] edu</a></p>
             <p>EDUCATION:</p>
-            <p class="indent">Master of Science,<br> Architectural Studies<br>
+            <p class="indent" style="color: white">Master of Science,<br> Architectural Studies<br>
             & Computer Science,<br>
             Massachusetts Institute of Technology<br>
             2019-2022</p>
-            <p style="margin-left: 2rem">B.Arch,<br>
+            <p class="indent" style="color: white">B.Arch,<br>
             Seoul National University<br>
             2011-2016</p>
 
         </div>
+
         <div class="section hidden" id="works">
             <p>→ <a class="work" id="a1" href="#1">Sonic Hypermirror: Attuning to Hyperobjects</a></p>
             <div class="description" id="d1">
                 YEAR: 2020-2021<br>
                 Master's thesis at MIT advised by Axel Kilian, read by <a href="https://arvindsatya.com/" target="_blank">Arvind Satyanarayan</a>
+<!--                <br><a class="see-more" onclick="return seeMore(1)"><u>see more</u></a>-->
             </div>
-            <p>→ <a class="work" id="a2" href="#2">Binaural Koreas</a></p>
-            <div class="description" id="d2">
-                YEAR: 2021<br>
-                Sound Studies at
-                <a href="http://music.fas.harvard.edu/" target="_blank">Harvard Department of Music</a><br>
-                taught by
-                <a href="https://landonmorrison.com/" target="_blank">Landon Morrison</a>
-            </div>
-            <p>→ <a class="work" id="a3" href="#3">Embodying a Narrative: Spatializing Abstract Narrative Themes for Forensic Exploration
+            <p>→ <a class="work" id="a2" href="#2">Embodying a Narrative: Spatializing Abstract Narrative Themes for Forensic Exploration
             </a></p>
             <div class="description" id="d3">
                 YEAR: 2021<br>
@@ -52,11 +48,23 @@
                 <a href="https://www.meganprakash.com/" target="_blank"> Megan Prakash</a>,
                 <a href="https://kwanq.cargo.site/" target="_blank">Kwan Queenie Li</a>,
                 Wuyahuang Li<br>
-                Presented at
-                <a href="https://chi2021.acm.org/" target="_blank">2021 ACM CHI</a>:
-                <a href="https://dl.acm.org/doi/10.1145/3411763.3451593" target="_blank">link</a>
-                <br>
+                PRESENTED AT:
+                <br><a href="https://chi2021.acm.org/" target="_blank">2021 ACM CHI</a>:
+                <a href="https://news.mit.edu/2021/how-mit-students-are-transforming-art-narrative-1202" target="_blank">link</a>
+                <br>Wiesner Art Gallery: <a href="https://dl.acm.org/doi/10.1145/3411763.3451593" target="_blank">link</a>
+                <br><a class="see-more" onclick="return seeMore(2)"><u>see more</u></a>
             </div>
+
+            <p>→ <a class="work" id="a3" href="#3">Binaural Koreas</a></p>
+            <div class="description" id="d2">
+                YEAR: 2021<br>
+                MUS159R Sound Studies at
+                <a href="http://music.fas.harvard.edu/" target="_blank">Harvard Department of Music</a><br>
+                taught by
+                <a href="https://landonmorrison.com/" target="_blank">Landon Morrison</a>
+                <br><a href="./works/3.html"><u>see more</u></a>
+            </div>
+
             <p>→ <a class="work" id="a4" href="#4">Experience Oriented Wayfinding</a></p>
             <div class="description" id="d4">
                 YEAR: 2018<br>
@@ -76,7 +84,27 @@
         <div class="media-container" id="1">
             <video src="assets/01.mp4" width = "100%" controls></video>
         </div>
+
         <div class="media-container" id="2">
+            <div class="media-overlay">
+                Immersive virtual experiences are becoming more prominent in journalism,
+                yet they largely focus on realistic simulations of the real world.
+                We introduce a novel VR experience that incorporates surrealism and
+                foregrounds the abstract concepts in the journalistic story of Occupy City Hall,
+                the June 2020 sit-in protest in New York, NY. The experience’s virtual environment
+                contains multimedia primary sources augmented with abstracted representations of
+                their interrelated underlying themes.
+            </div>
+            <iframe width="1920" height="1080" src="https://www.youtube.com/embed/a8z4mASDpU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+<!--        <div class="media-container" height="40.5vw">-->
+<!--            <a href="https://news.mit.edu/2021/how-mit-students-are-transforming-art-narrative-1202" target="_blank">-->
+<!--                <img class="filtered" style="filter: hue-rotate(180deg) contrast(200%) grayscale(80%)" height="100%"-->
+<!--                     src="https://news.mit.edu/sites/default/files/styles/news_article__image_gallery/public/images/202111/Unbounded_Transmedia_physical_0.jpg" alt="TSI Unbounded">-->
+<!--            </a>-->
+<!--        </div>-->
+
+        <div class="media-container" id="3">
             <div class="media-overlay">
                 <b>Binaural Koreas</b> is an audiovisual experiment on semi-fictional
                 soundscape composition representing the political identities,
@@ -90,18 +118,7 @@
             </div>
             <iframe src="https://player.vimeo.com/video/691599629?h=0cb1776f0e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Binaural Koreas (2021)"></iframe>
         </div>
-        <div class="media-container" id="3">
-            <div class="media-overlay">
-                Immersive virtual experiences are becoming more prominent in journalism,
-                yet they largely focus on realistic simulations of the real world.
-                We introduce a novel VR experience that incorporates surrealism and
-                foregrounds the abstract concepts in the journalistic story of Occupy City Hall,
-                the June 2020 sit-in protest in New York, NY. The experience’s virtual environment
-                contains multimedia primary sources augmented with abstracted representations of
-                their interrelated underlying themes.
-            </div>
-            <iframe width="1920" height="1080" src="https://www.youtube.com/embed/a8z4mASDpU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+
         <div class="media-container" id="4">
             <div class="media-overlay">
                 Experience Oriented Wayfinding was initiated in the context of D2D(door to door) platform organized by NaverLabs,
@@ -124,6 +141,82 @@
                 architecture, media lab and comparative media studies program at MIT.
             </div>
         </div>
+    <div class="detailed" id="dd1">
+
+    </div>
+
+
+    <div class="detailed" id="dd2">
+<!--        <div class="img-container">-->
+<!--            <img src="./assets/2/image1.jpeg">-->
+<!--        </div>-->
+        <div class="paragraph">
+            <p>
+                <u>
+                    Embodying a Narrative: Spatializing Abstract Narrative Themes for Forensic Exploration</u>
+                is a demonstration of a novel interface in VR created by myself,
+                Megan Prakash, Wuyahuang Li, and Kwan Queenie Li at the Massachusetts Institute of Technology.
+                A paper on this project was published in <i>CHI Conference on Human Factors in Computing Systems ‘21:</i>
+                <a href="https://doi.org/10.1145/3411763.3451593" target="_blank"><u>link</u></a></p>
+            <p>
+                Immersive virtual experiences are becoming more prominent in journalism,
+                yet they largely focus on realistic simulations of the real world.
+                We introduce a novel VR experience that incorporates surrealism and
+                foregrounds the abstract concepts in the journalistic story of Occupy
+                City Hall, the June 2020 sit-in protest in New York, NY.
+            </p><p>
+                There is much foundational work on what makes a compelling and friendly experience,
+                but virtual reality nonfiction has many unexplored avenues, particularly in the
+                realms of presenting abstract concepts and utilizing interaction modalities.
+                This project presents our contribution to this space.
+            </p><p>
+                In short, we see the traditional journalism format as (1) photos or videos: an ethical visual representation of an event, and (2) writing: an authentic narrative that completes the story with the who, what, when, where, why, and how a narrative that can become complex and abstract, especially in the case of deeply woven social issues. We believe that new forms of immersive media can parallel this: (1) concrete visual media, including photogrammetry or videos from the event, to objectively reproduce the scene of an event, and (2) new forms of interaction to represent underlying concepts and histories.
+                Our goal was to create an interface to explore Occupy City Hall media with the following traits:
+                Foreground prominent themes that motivated the actions of protestors
+                “Make the invisible visible,” as is the unique capability of VR and surrealism at large
+                Present the user with an ambiguous interface with the opportunity to decipher it. Ambiguity has long been used in fine art practice and can lead a user towards deep conceptual understanding. Ambiguity in HCI also has the advantage of allowing “designers to engage users with issues without constraining how they respond” [1].
+                Build a visually compelling environment with roots in fine art, as a means to explore novel interface design
+                We believe that an ambiguous, concept-based interface can leverage the twin educational affordances of exploration and guidance, which combine to encourage users to reflect on and retain conceptual material. [6]
+            </p><p>
+            <h3>Conclusions</h3>
+                <p>
+                    We received very positive responses with regards to the visual design and the ability to showcase a broad selection of primary sources. The exploration interface meant that many themes could be showcased without overtly choosing a primary narrative. Observers felt the space was engaging to experience and felt it had potential for sharing nuanced and balanced stories.
+                </p><p>
+                The most common critique was that the living room scene was too ambiguous and lacked guidance for the user to understand their task and track their progress. The pandemic prevented our ability to carry out further user studies at this time.
+            </p><p>
+                In conclusion, our project blended the ambiguous and definite in order to create an innovative interface to explore a concept-heavy journalistic narrative.
+            </p><p>
+                We express gratitude to Prof.
+            <a target="_blank" href="https://foxharrell.com/">D. Fox Harrell</a>
+            and Dr.
+            <a target="_blank" href="https://www.cagrizaman.com/">Cagri Hakan Zaman</a>
+            of MIT for their class, which provided the education and opportunity to create this project.
+
+
+            </p>
+            <p class="footnote">
+                <ol>
+                    <li><a target="_blank" href="https://dl.acm.org/doi/10.1145/642611.642653">William W Gaver, Jacob Beaver, and Steve Benford. 2003. Ambiguity as a Resource for Design. NEW HORIZONS 5 (2003), 8.</a>
+                    </li>
+                    <li><a target="_blank" href = "https://www.youtube.com/watch?v=pM6oS9nqM0c">https://www.youtube.com/watch?v=pM6oS9nqM0c</a>
+                    </li>
+                    <li><a target="_blank" href = "https://www.youtube.com/watch?v=ygQSQUUMgFM">https://www.youtube.com/watch?v=ygQSQUUMgFM</a>
+                    </li>
+                    <li><a target="_blank" href = "https://ny.eater.com/2020/7/7/21310274/food-behind-the-occupy-city-hall-movement">https://ny.eater.com/2020/7/7/21310274/food-behind-the-occupy-city-hall-movement</a>
+                    </li>
+                    <li><a target="_blank" href = "https://www.nytimes.com/2020/06/28/nyregion/occupy-city-hall-nyc.html">https://ny.eater.com/2020/7/7/21310274/food-behind-the-occupy-city-hall-movement</a>
+                    </li>
+                    <li><a target="_blank" href = "https://www.theguardian.com/us-news/2020/jun/30/occupy-city-hall-hundred-protesters-demand-nypd-cut-budget-1bn">
+                        Hundreds of Occupy City Hall protesters demand NYPD cut budget by $1bn, The Guardian
+                    </li>
+                    <li><a target="_blank" href="https://ieeexplore.ieee.org/document/8007226/">Maria Roussou and Mel Slater. 2020. Comparison of the Effect of Interactive versus Passive Virtual Reality Learning Activities in Evoking and Sustaining Conceptual Change. IEEE Transactions on Emerging Topics in Computing 8, 1: 233–244.</a>
+                    </li>
+                </ol>
+            </p>
+
+        </div>
+    </div>
+
     </div>
 </div>
 

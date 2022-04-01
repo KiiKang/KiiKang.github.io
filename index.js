@@ -1,5 +1,8 @@
 let divWorks = document.getElementById("works");
 let divBio = document.getElementById("bio");
+let divRight = document.getElementById('right');
+let mediaContainers = document.getElementsByClassName('media-container');
+let mediaOverlays = document.getElementsByClassName('media-overlay');
 
 function showDiv(divID) {
     divWorks.style.display = "none";
@@ -39,3 +42,14 @@ function reArrange(){
     }
 }
 
+function seeMore(N){
+    divRight.style.backgroundColor = "white";
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    Array.from(mediaContainers).forEach(d => d.style.display='none');
+    Array.from(mediaOverlays).forEach(d => d.style.display='none');
+
+    document.getElementById(String(N)).style.display='block';
+    document.getElementById("dd" + String(N)).style.display="block";
+
+}

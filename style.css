@@ -1,16 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url('https://fonts.googleapis.com/css?family=Karla');
 
 html{
     scroll-behavior: smooth;
 }
 body{
-    font-family: "Roboto Mono";
-    word-spacing: -0.2rem;
-    font-size: 1.2rem;
-    background-color: black;
-    color: darkgray;
+    font-family: "Karla";
+    /*word-spacing: -0.1rem;*/
+    font-size: 1.5rem;
+    line-height: 2rem;
+    background-color: #1a1a1a;
+    color: white;
     margin: 0;
     padding: 0;
+    transition: background-color 500ms;
+}
+
+h1{
+    font-size: 2rem;
+    word-spacing: -0.4rem;
+    line-height: 2.4rem;
+}
+
+h3{
+    text-decoration: underline;
 }
 
 div{
@@ -19,14 +32,18 @@ div{
 }
 
 a:link{
-    color: white;
+    color: inherit;
     text-decoration: none;
-
 }
 a:visited{
-    color: white;
+    color: inherit;
     text-decoration: none;
 }
+
+#container{
+    margin:0;
+}
+
 a:hover{
     text-decoration: underline;
     text-decoration-color: yellowgreen;
@@ -44,7 +61,9 @@ a:hover{
 #right{
     position: relative;
     width: 72vw;
+    transition: background-color 500ms;
 }
+
 .section{
     padding: 20px;
     border-bottom: 1px dashed #757575;
@@ -59,15 +78,20 @@ a:hover{
 }
 
 
-p{
-    color: white;
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
+.section > p{
+    margin-block-start: 0.3rem;
+    margin-block-end: 0.3rem;
+    font-weight: lighter;
+    color: darkgray;
 }
+
+.section > p > a{
+    color: white;
+}
+
 p.indent{
     margin-left: 2rem;
 }
-
 
 
 iframe{
@@ -77,6 +101,10 @@ iframe{
 
 .media-container{
     position: relative;
+}
+
+.media-container > img{
+    width: 100%;
 }
 
 .media-overlay{
@@ -108,7 +136,7 @@ iframe{
 }
 
 button {
-    background-color: transparent;
+    background-color: #1a1a1a;
     border: 1px solid #757575;
     color: white;
     font-family: inherit;
@@ -124,22 +152,17 @@ button:hover{
     transition: 0.2s ease-in-out;
 }
 
-#footer {
-    position: relative;
-    width: 100vw;
-    display: flex;
-    color: #757575;
-    border-top: 1px dashed #757575;
-    font-size: 0.8rem;
-}
+
 #works{
     position: sticky;
     top: 104px;
 }
+
 .description{
     display: none;
     color: yellowgreen;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
     margin-left: 1.5rem;
 }
 
@@ -153,5 +176,69 @@ button:hover{
 }
 
 img{
-    object-fit: cover;
+    object-fit: fill;
 }
+
+.filtered :hover{
+    filter: grayscale(50%);
+}
+
+
+.paragraph{
+    width: 60%;
+    min-width: 600px;
+    margin: 0 auto;
+    margin-top: 200px;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+}
+
+.paragraph >p, .detailed > * {
+    color: #1a1a1a;
+}
+
+.detailed{
+    display: none;
+    padding: 50px;
+}
+
+.detailed:hover{
+    box-shadow: 0 0 20px 20px rgba(173, 255, 47, 0.4);
+    transition-duration: 500ms;
+}
+
+.detailed > a{
+    color: #1a1a1a;
+}
+
+.img-container .img-container > img{
+    width: 100%;
+}
+
+#footer {
+    position: relative;
+    width: 100vw;
+    display: flex;
+    color: #757575;
+    border-top: 1px dashed #757575;
+    font-size: 0.8rem;
+}
+
+li{
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+ol {
+    counter-reset: list;
+    margin-left: 0;
+}
+
+ol li {
+    counter-increment: OrderedList;
+    list-style: none;
+}
+ol li :before {
+    content: "[" counter(OrderedList) "] ";
+}
+
