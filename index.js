@@ -1,5 +1,6 @@
 let divWorks = document.getElementById("works");
 let divBio = document.getElementById("bio");
+let divLeft = document.getElementById("left");
 let divRight = document.getElementById('right');
 let mediaContainers = document.getElementsByClassName('media-container');
 let mediaOverlays = document.getElementsByClassName('media-overlay');
@@ -13,6 +14,17 @@ function showDiv(divID) {
 
 let descriptions = document.getElementsByClassName("description");
 
+function goHome(){
+    divRight.style.backgroundColor = "transparent";
+    Array.from(detailed).forEach(d => d.style.display='none');
+    Array.from(mediaContainers).forEach(d => d.style.display='block');
+    Array.from(mediaOverlays).forEach(d => d.style.display='block');
+
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+}
+
 function showDesc(N){
     for (const div of descriptions){
         div.style.display = "none";
@@ -22,7 +34,6 @@ function showDesc(N){
         if (d.style.display !== 'none'){
             d.style.display = 'none';
             divRight.style.backgroundColor = "transparent";
-
             Array.from(mediaContainers).forEach(d => d.style.display='block');
             Array.from(mediaOverlays).forEach(d => d.style.display='block');
         }
@@ -34,8 +45,6 @@ window.addEventListener('resize', reArrange);
 
 function reArrange(){
     let wrapper = document.getElementById("container");
-    let divLeft = document.getElementById("left");
-    let divRight = document.getElementById("right");
     let overlays = document.querySelectorAll(".media-overlays");
     if (window.innerHeight > window.innerWidth) {
         wrapper.style.flexDirection = 'column';
@@ -51,7 +60,7 @@ function reArrange(){
     }
 }
 
-function seeMore(N){
+function readMore(N){
     divRight.style.backgroundColor = "white";
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera

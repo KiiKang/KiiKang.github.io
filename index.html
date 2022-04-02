@@ -12,6 +12,7 @@
     <div class="column" id="left">
 
         <div class="button-container section">
+            <button onclick="goHome()"> HOME </button>
             <button onclick="showDiv('bio')"> BIO </button>
             <button onclick="showDiv('works')"> WORKS </button>
         </div>
@@ -38,7 +39,7 @@
             <div class="description" id="d1">
                 YEAR: 2020-2021<br>
                 Master's thesis at MIT advised by Axel Kilian, read by <a href="https://arvindsatya.com/" target="_blank">Arvind Satyanarayan</a>
-<!--                <br><a class="see-more" onclick="return seeMore(1)"><u>read more</u></a>-->
+<!--                <br><a class="see-more" onclick="return readMore(1)"><u>read more</u></a>-->
             </div>
             <p>→ <a class="work" onclick="return showDesc(2)" id="a2" href="#2">Embodying a Narrative: Spatializing Abstract Narrative Themes for Forensic Exploration
             </a></p>
@@ -52,7 +53,7 @@
                 <br><a href="https://chi2021.acm.org/" target="_blank">2021 ACM CHI</a>:
                 <a href="https://news.mit.edu/2021/how-mit-students-are-transforming-art-narrative-1202" target="_blank">link</a>
                 <br>Wiesner Art Gallery: <a href="https://dl.acm.org/doi/10.1145/3411763.3451593" target="_blank">link</a>
-                <br><a class="see-more" onclick="return seeMore(2)"><u>read more</u></a>
+                <br><a class="see-more" onclick="return readMore(2)"><u>read more</u></a>
             </div>
 
             <p>→ <a class="work" onclick="return showDesc(3)" id="a3" href="#3">Binaural Koreas</a></p>
@@ -62,7 +63,7 @@
                 <a href="http://music.fas.harvard.edu/" target="_blank">Harvard Department of Music</a><br>
                 taught by
                 <a href="https://landonmorrison.com/" target="_blank">Landon Morrison</a>
-                <br><a class="see-more" onclick="return seeMore(3)"><u>read more</u></a>
+                <br><a class="see-more" onclick="return readMore(3)"><u>read more</u></a>
             </div>
 
             <p>→ <a class="work" onclick="return showDesc(4)" id="a4" href="#4">Experience Oriented Wayfinding</a></p>
@@ -76,15 +77,14 @@
                 COLLABORATORS: <a href="https://kwanq.cargo.site/" target="_blank">Kwan Queenie Li</a>, Weihan Jiang
                 (<a href="https://act.mit.edu/" target="_blank">Art, Culture, and Technology</a> at MIT)
             </div>
-
         </div>
     </div>
 
     <div class = "column" id="right">
+
         <div class="media-container" id="1">
             <video src="assets/01.mp4" width = "100%" controls></video>
         </div>
-
         <div class="media-container" id="2">
             <div class="media-overlay">
                 Immersive virtual experiences are becoming more prominent in journalism,
@@ -93,20 +93,14 @@
                 foregrounds the abstract concepts in the journalistic story of Occupy City Hall,
                 the June 2020 sit-in protest in New York, NY. The experience’s virtual environment
                 contains multimedia primary sources augmented with abstracted representations of
-                their interrelated underlying themes.
+                their interrelated underlying themes.<br>
+                <a class="see-more" onclick="return readMore(2)"><u>read more</u></a>
             </div>
             <iframe width="1920" height="1080" src="https://www.youtube.com/embed/a8z4mASDpU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-<!--        <div class="media-container" height="40.5vw">-->
-<!--            <a href="https://news.mit.edu/2021/how-mit-students-are-transforming-art-narrative-1202" target="_blank">-->
-<!--                <img class="filtered" style="filter: hue-rotate(180deg) contrast(200%) grayscale(80%)" height="100%"-->
-<!--                     src="https://news.mit.edu/sites/default/files/styles/news_article__image_gallery/public/images/202111/Unbounded_Transmedia_physical_0.jpg" alt="TSI Unbounded">-->
-<!--            </a>-->
-<!--        </div>-->
-
         <div class="media-container" id="3">
             <div class="media-overlay">
-                <b>Binaural Koreas</b> is an audiovisual experiment on semi-fictional
+                Binaural Koreas is an audiovisual experiment on semi-fictional
                 soundscape composition representing the political identities,
                 conflicts, and reconciliation of the two Koreas. The Demilitarized Zone(DMZ)
                 between South and North Korea has been a battleground of sonic warfare,
@@ -115,10 +109,10 @@
                 Seventy years of the divide between South and North Korea, are represented through
                 the binaural split, the two speakers asserting their own territories yet resonating
                 within a single stereophonic <i>place</i>.
+                <br><a class="see-more" onclick="return readMore(3)"><u>read more</u></a>
             </div>
             <iframe src="https://player.vimeo.com/video/691599629?h=0cb1776f0e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Binaural Koreas (2021)"></iframe>
         </div>
-
         <div class="media-container" id="4">
             <div class="media-overlay">
                 Experience Oriented Wayfinding was initiated in the context of D2D(door to door) platform organized by NaverLabs,
@@ -141,11 +135,9 @@
                 architecture, media lab and comparative media studies program at MIT.
             </div>
         </div>
+
         <div class="detailed" id="dd1">
-
         </div>
-
-
         <div class="detailed" id="dd2">
     <!--        <div class="img-container">-->
     <!--            <img src="./assets/2/image1.jpeg">-->
