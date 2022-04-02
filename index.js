@@ -3,6 +3,7 @@ let divBio = document.getElementById("bio");
 let divRight = document.getElementById('right');
 let mediaContainers = document.getElementsByClassName('media-container');
 let mediaOverlays = document.getElementsByClassName('media-overlay');
+let detailed = document.getElementsByClassName('detailed');
 
 function showDiv(divID) {
     divWorks.style.display = "none";
@@ -10,16 +11,24 @@ function showDiv(divID) {
     document.getElementById(divID).style.display = "block";
 }
 
-let works = document.getElementsByClassName("work");
 let descriptions = document.getElementsByClassName("description");
-for (let i=0; i<works.length; i++){
-    works[i].addEventListener("click", function(){
-        for (const div of descriptions){
-            div.style.display = "none";
+
+function showDesc(N){
+    for (const div of descriptions){
+        div.style.display = "none";
+    }
+    descriptions[N-1].style.display = "block";
+    Array.from(detailed).forEach(d =>{
+        if (d.style.display !== 'none'){
+            d.style.display = 'none';
+            divRight.style.backgroundColor = "transparent";
+
+            Array.from(mediaContainers).forEach(d => d.style.display='block');
+            Array.from(mediaOverlays).forEach(d => d.style.display='block');
         }
-        descriptions[i].style.display = "block";
     })
 }
+
 
 window.addEventListener('resize', reArrange);
 
@@ -48,6 +57,8 @@ function seeMore(N){
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     Array.from(mediaContainers).forEach(d => d.style.display='none');
     Array.from(mediaOverlays).forEach(d => d.style.display='none');
+    Array.from(detailed).forEach(d => d.style.display='none');
+
 
     document.getElementById(String(N)).style.display='block';
     document.getElementById("dd" + String(N)).style.display="block";

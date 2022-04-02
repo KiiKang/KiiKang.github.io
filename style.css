@@ -188,7 +188,7 @@ img{
     width: 60%;
     min-width: 600px;
     margin: 0 auto;
-    margin-top: 200px;
+    margin-top: 80px;
     font-size: 1.2rem;
     line-height: 1.8rem;
 }
@@ -210,8 +210,13 @@ img{
 .detailed > a{
     color: #1a1a1a;
 }
+.img-container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: right;
+}
 
-.img-container .img-container > img{
+.img-container > img{
     width: 100%;
 }
 
@@ -224,16 +229,20 @@ img{
     font-size: 0.8rem;
 }
 
+.caption{
+    font-size: 0.8rem;
+    margin: 0;
+    color: darkgray;
+}
+
 li{
     font-size: 1rem;
     line-height: 1.5rem;
 }
-
 ol {
     counter-reset: list;
     margin-left: 0;
 }
-
 ol li {
     counter-increment: OrderedList;
     list-style: none;
