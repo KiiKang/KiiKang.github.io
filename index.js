@@ -45,18 +45,23 @@ window.addEventListener('resize', reArrange);
 
 function reArrange(){
     let wrapper = document.getElementById("container");
-    let overlays = document.querySelectorAll(".media-overlays");
+    let iframes = document.querySelectorAll("iframe");
     if (window.innerHeight > window.innerWidth) {
         wrapper.style.flexDirection = 'column';
         divLeft.style.width = '100vw';
         divRight.style.width = '100vw';
-        for (const div in overlays){
-            div.style.fontSize = '50px';
-        }
+        Array.from(iframes).forEach(i => {
+            i.style.width = "100vw";
+            i.style.height = "56vw";
+        })
     } else {
         wrapper.style.flexDirection = 'row';
         divLeft.style.width = '28vw';
         divRight.style.width = '72vw';
+        Array.from(iframes).forEach(i => {
+            i.style.width = "72vw";
+            i.style.height = "40.5vw";
+        })
     }
 }
 

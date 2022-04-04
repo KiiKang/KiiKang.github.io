@@ -49,6 +49,11 @@ a:hover{
     text-decoration-color: yellowgreen;
 }
 
+a .work:hover{
+    font-style: italic;
+
+}
+
 #container{
     display: flex;
     /*flex-direction: row;*/
@@ -175,7 +180,6 @@ button:hover{
 
 .hidden{
     display: none;
-    margin-bottom: 60px;
 }
 
 img{
