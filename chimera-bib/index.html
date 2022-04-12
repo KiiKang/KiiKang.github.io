@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src='https://raw.githack.com/karpathy/tsnejs/master/tsne.js'></script>
+
+</head>
+<body>
+<div>
+    <svg id="bib" height="100vh" width="100vw"></svg>
+    <div id="bib-ground"></div>
+</div>
+
+<script>
+
+    function titleCase(str) {
+        let splitStr = str.toLowerCase().split(' ');
+        let skipWords = ["a", "the", "on", "in", "of", "is", "to", "and"];
+        for (let i = 0; i < splitStr.length; i++) {
+            if (i === 0 || !skipWords.includes(splitStr[i])){
+                splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+            }
+        }
+        return splitStr.join(' ');
+    }
+    function sortByVal(obj) {
+        let sorted = [];
+        for (let key in obj) {
+            sorted.push([key, obj[key]]);
+        }
+        sorted.sort(function(a, b){
+            return  b[1] - a[1];
+        });
+        return sorted;
+    }
+    function topicalDist(a, b) {
+        let n = 10;
+        if(a.length === 0 || b.length === 0){
+            return n;
+        }
+        a.forEach(d => {
+            b.forEach(e => {
+                if(d===e){
+                    n -= 1;
+                }
+            })
+        })
+        return n;
+    }
+    // ref: https://stackoverflow.com/questions/60293272/drawing-beziercurve-in-d3-js
+    function linker(x0, y0, x1, y1) {
+        var k = (y1-y0)/2;
+        var path = d3.path()
+        path.moveTo(y0, x0);
+        // path.lineTo(y0+k/2,x0);
+        // path.bezierCurveTo(y1-k,x0,y0+k,x1,y1-k/2,x1);
+        path.lineTo(y1,x1);
+
+        return path.toString();
+    }
+
+    var yearList = [];
+    var tagObj = {};
+    var userData = [];
+    let yearMax = 0, yearMin = 2021;
+    let width = window.innerWidth,
+        height = window.innerHeight,
+        margin = 50,
+        marginSide = 100,
+        marginTop = 150,
+        centerX = d3.scaleLinear()
+            .range([width/2 - height/2 + margin + marginSide, width/2 + height/2 - margin - marginSide]),
+        centerY = d3.scaleLinear()
+            .range([marginTop + margin, height - margin]);
+
+    async function draw() {
+        await d3.csv('./chimera-2021.csv', function (d, i) {
+            let title = titleCase(d.Title);
+            let author = d.Author.split("; ");
+            let year = parseInt(d["Publication Year"]);
+            let tags = d.Tags;
+            let url = d.Url;
+
+            if (url === ""){
+                url = "empty";
+            }
+
+            if(tags.length !== 0) {
+                tags = tags.split("; ").map(t => titleCase(t));
+                tags.forEach(t => {
+                    if (t in tagObj) {
+                        tagObj[t] += 1;
+                    } else{
+                        tagObj[t] = 1;
+                    }
+                })
+            }
+            if (yearMax < year){ yearMax = year }
+            if (yearMin > year){ yearMin = year }
+            if (!yearList.includes(year)) {
+                yearList.push(parseInt(year))
+            }
+
+            userData.push({
+                id: i,
+                title: title,
+                author: author,
+                year: year,
+                tags: tags,
+                url: url,
+                x: Math.random(),
+                y: Math.random(),
+            })
+        })
+
+        function initTSNE() {
+
+            const bibGround = d3.select("#bib-ground")
+
+            // add bib cards
+            bibGround
+                .selectAll("div")
+                .data(userData)
+                .enter()
+                .append("div")
+                .attr("class", "bib-card")
+                .style("border", "1px black solid")
+                .html(d => d.author + ", " + "<i>" + d.title + "</i>")
+                .style("left", d => String(centerX(d.x))+"px")
+                .style("top", d => String(centerY(d.y))+"px");
+
+            // add connections
+            userData.forEach(d => {
+                d3.select("#bib-ground")
+                .selectAll("svg")
+                .data(d)
+                .enter()
+                .append("path")
+                .attr("d", e => {
+                    if (topicalDist(d.tags, e.tags) !== 10){
+                        console.log(centerX(d.x), centerY(d.y), centerX(e.x), centerY(e.y));
+                        return linker(centerX(d.x), centerY(d.y), centerX(e.x), centerY(e.y));
+                    }
+                })
+            })
+        }
+
+        function drawTSNE() {
+            const canvas = d3.select("#bib-ground")
+            const model = new tsnejs.tSNE({
+                dim: 2,
+                perplexity: 30,
+            });
+
+            const dists = userData.map(d => userData.map(e => topicalDist(d.tags, e.tags) + 2 * topicalDist(d.author, e.author)))
+            model.initDataDist(dists);
+
+            d3.forceSimulation(
+                userData.map(d => (d.x = width/2, d.y = height/2, d))
+            )
+                .alphaDecay(0.005)
+                .alpha(0.1)
+                .force('tsne', function (alpha) {
+                    // every time you call this, solution gets better
+                    model.step();
+                    // Y is an array of 2-D points that you can plot
+                    let pos = model.getSolution();
+                    centerX.domain(d3.extent(pos.map(d => d[0])));
+                    centerY.domain(d3.extent(pos.map(d => d[1])));
+
+                    userData.forEach((d, i) => {
+                        d.x += alpha * (centerX(pos[i][0]) - d.x);
+                        d.y += alpha * (centerY(pos[i][1]) - d.y);
+                    });
+                })
+                .force('collide', d3.forceCollide().radius(50))
+                .on('tick', function () {
+                    let nodes = userData.map(d => {
+                        return { x: d.x, y: d.y };
+                    });
+                    draw(canvas, nodes);
+                });
+
+            function draw(canvas, nodes) {
+                let context = canvas.node().getContext("2d");
+                context.clearRect(0, 0, width, width);
+
+                for (let i = 0, n = nodes.length; i < n; ++i) {
+                    var node = nodes[i];
+                    context.beginPath();
+                    context.moveTo(node.x, node.y);
+                    context.arc(node.x, node.y, 50, 0, 2 * Math.PI);
+                    context.lineWidth = 0.5;
+                    context.fill();
+                }
+            }
+        }
+
+        initTSNE();
+        // drawTSNE();
+        // d3.select("#bib-ground")
+        //     .append("path")
+        //     .attr("d", linker(1200,1200,600,600));
+
+
+        yearList.sort().reverse();
+        let tagSorted = sortByVal(tagObj);
+
+        // for future use:
+        //     https://github.com/d3fc/d3fc/tree/master/examples/axis-rotate-auto/
+
+
+        let tagInterval = (window.innerWidth - 2 * marginSide)/tagSorted.length
+        let asinVal = 25/tagInterval;
+        let rotateAngleTags = 90;
+        if (asinVal < 1) {
+            rotateAngleTags = Math.asin(asinVal) * 180/Math.PI;
+        }
+        let rotateAngleYears = rotateAngleTags;
+        if (rotateAngleTags > 60){
+            rotateAngleYears = 0;
+        }
+
+        let svg = d3.select("#bib")
+
+        // add year legend
+        svg.selectAll()
+            .data(yearList)
+            .enter()
+            .append("text")
+            .attr("class", "year-legend")
+            .style("fill", "darkgray")
+            .text((d) => d)
+            .attr("transform", d => {
+                return 'translate(' + String(marginSide-50) + ', '+ String(200 + (yearMax - d) * 18)
+                    + '), '+  'rotate(-' + String(rotateAngleYears) + ')';
+            })
+            .attr("text-anchor", "end")
+            .attr("alignment-baseline", "middle")
+            .on("mouseover", handleMouseOver)
+            .on("mouseout", handleMouseOut);
+
+        // add year ticks
+        svg.selectAll()
+            .data(d3.range(yearMin, yearMax + 1))
+            .enter()
+            .append("circle")
+            .attr("class", "year-tick")
+            .attr("id", d => String(d))
+            .attr("r", d => {
+                if(yearList.includes(d)){
+                    return 3;
+                } else { return 1.5; }
+            })
+            .style("fill", "darkgray")
+            .attr("transform", d => {
+                return 'translate(' + String(marginSide-40) + ', '+ String(200 + (yearMax - d) * 18
+                    - 10* Math.tan(rotateAngleYears/180*Math.PI)) + ')';
+            })
+
+        // add tags
+        let tagDisplay = svg.selectAll()
+            .data(tagSorted)
+            .enter()
+            .append("text")
+            .attr("class", "tag-legend")
+            // .style("font-size", d => String(d[1]*0.5+0.2)+"rem")
+            .style("fill", "darkgray")
+            .text(d => d[0])
+            .attr("transform", (d,i) => {
+                return 'translate( '+ String(marginSide + i * tagInterval) + ',' + String(marginTop) + '),'+ 'rotate(-' + String(rotateAngleTags) + ')';})
+            .attr("text-anchor", "start")
+            .on("mouseover", handleMouseOver)
+            .on("mouseout", handleMouseOut);
+
+        // add boxes around text
+        tagDisplay.each(function(d,i) {
+            var bbox = this.getBBox();
+            svg.append("rect")
+                .attr("class", "tag-box")
+                .attr("x", bbox.x-4)
+                .attr("y", bbox.y-2.5)
+                .attr("width", bbox.width+8)
+                .attr("height", bbox.height+5)
+                .attr("transform",
+                    'translate( '+ String(marginSide + i * tagInterval) + ', 150),'+ 'rotate(-' + String(rotateAngleTags) + ')')
+                .style("fill", "#444444")
+                .style("transparency", 0.5)
+                .style("stroke", "#666")
+                .style("stroke-width", "1px")
+        })
+
+        // bring text to front
+        tagDisplay.each(function() {
+            this.parentNode.appendChild(this);
+        })
+
+        window.addEventListener("resize", redraw);
+
+        function redraw() {
+            tagInterval = (window.innerWidth - 2 * marginSide)/tagSorted.length
+            asinVal = 25/tagInterval;
+            rotateAngleTags = 90;
+            if (asinVal < 1) {
+                rotateAngleTags = Math.asin(asinVal ) * 180/Math.PI;
+            }
+            rotateAngleYears = rotateAngleTags;
+            if (rotateAngleTags > 60){
+                rotateAngleYears = 0;
+            }
+            tagDisplay.each(function(d,i){
+                this.setAttribute("transform",
+                        'translate( '+ String(marginSide + i * tagInterval) + ', 150),'+ 'rotate(-' + String(rotateAngleTags) + ')')
+            });
+            svg.selectAll("rect").each(function(d,i){
+                this.setAttribute("transform",
+                    'translate( '+ String(marginSide + i * tagInterval) + ', 150),'+ 'rotate(-' + String(rotateAngleTags) + ')')
+            });
+
+
+        }
+
+    }
+
+    let fontSize;
+    function handleMouseOver() {
+        fontSize = d3.select(this).style("font-size");
+
+        d3.selectAll(".bib-card")
+            .style("opacity", 0.2);
+
+        if(this.getAttribute("class") === "year-legend") {
+            d3.select(this)
+                .style("fill", "black")
+                .style("font-size", fontSize);
+
+            d3.select("#bib-ground")
+                .data(userData)
+                .enter()
+                .append("div")
+                .filter(d => { return d.year == this.innerHTML})
+                .attr("class", "bib-card")
+                .style("border", "2px black solid")
+                .html(d => d.author + ", " + "<i>" + d.title + "</i>")
+                .style("left", d => String(centerX(d.x))+"px")
+                .style("top", d => String(centerY(d.y))+"px");
+
+        } else if(this.getAttribute("class") === "tag-legend") {
+            d3.select(this)
+                .style("fill", "white")
+                .style("font-size", fontSize);
+
+            d3.select("#bib-ground")
+                .data(userData)
+                .enter()
+                .append("div")
+                .filter(d => { return d.tags.includes(this.innerHTML)})
+                .attr("class", "bib-card")
+                .style("border", "2px black solid")
+                .html(d => d.author + ", " + "<i>" + d.title + "</i>")
+                .style("left", d => String(centerX(d.x))+"px")
+                .style("top", d => String(centerY(d.y))+"px");
+
+        }
+    }
+
+    function handleMouseOut() {
+        console.log(this)
+        d3.select(this).attr("style", "text-decoration: none")
+            .style("fill", "darkgray")
+            .style("font-size", fontSize);
+        d3.selectAll(".bib-card")
+            .style("opacity", 1)
+            .style("border", "1px black solid");
+
+    }
+
+    draw();
+
+</script>
+
+</body>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    text{
+        font-family: sans-serif;
+        font-size: 0.75rem;
+    }
+
+    #bib-ground{
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        z-index: -1;
+    }
+    .bib-card{
+        font-size: 0.75rem;
+        position: absolute;
+        padding: 5px;
+        width: 200px;
+        font-family: sans-serif;
+        color: black;
+        border: 1px solid black;
+        transform: translateX(-50%) translateY(-50%);
+        background: white;
+        box-shadow:
+            0.7px 0.7px 10.5px rgba(0, 0, 0, 0.034),
+            1.8px 1.8px 18.9px rgba(0, 0, 0, 0.049),
+            3.7px 3.7px 26.8px rgba(0, 0, 0, 0.061),
+            7.7px 7.7px 37.9px rgba(0, 0, 0, 0.076),
+            21px 21px 75px rgba(0, 0, 0, 0.11);;
+    }
+    .inactive{
+        opacity: 0.5;
+    }
+</style>
+</html>
