@@ -71,7 +71,8 @@
         marginSide = 100,
         marginTop = 150,
         centerX = d3.scaleLinear()
-            .range([width/2 - height/2 + margin + marginSide, width/2 + height/2 - margin - marginSide]),
+            // .range([width/2 - height/2 + margin + marginSide, width/2 + height/2 - margin - marginSide]),
+            .range([marginSide + 2* margin, width - 2*margin]),
         centerY = d3.scaleLinear()
             .range([marginTop + margin, height - margin]);
 
@@ -218,10 +219,11 @@
         if (asinVal < 1) {
             rotateAngleTags = Math.asin(asinVal) * 180/Math.PI;
         }
-        let rotateAngleYears = rotateAngleTags;
-        if (rotateAngleTags > 60){
-            rotateAngleYears = 0;
-        }
+        // let rotateAngleYears = rotateAngleTags;
+        // if (rotateAngleTags > 60){
+        //     rotateAngleYears = 0;
+        // }
+        let rotateAngleYears = 0;
 
         let svg = d3.select("#bib")
 
@@ -240,7 +242,8 @@
             .attr("text-anchor", "end")
             .attr("alignment-baseline", "middle")
             .on("mouseover", handleMouseOver)
-            .on("mouseout", handleMouseOut);
+            .on("mouseout", handleMouseOut)
+            .on("mouseclick", handleMouseClick);
 
         // add year ticks
         svg.selectAll()
@@ -374,6 +377,9 @@
         d3.selectAll(".bib-card")
             .style("opacity", 1)
             .style("border", "1px black solid");
+    }
+
+    function handleMouseClick() {
 
     }
 
@@ -389,7 +395,7 @@
     }
     text{
         font-family: sans-serif;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     #bib-ground{
@@ -402,7 +408,7 @@
         z-index: -1;
     }
     .bib-card{
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         position: absolute;
         padding: 5px;
         width: 200px;
