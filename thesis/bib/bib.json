@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Schaufensterstück",
+    "author": "Peter Ablinger",
+    "year": 2004,
+    "link": "",
+    "thumbnail": ".jpg",
+    "type": [""],
+    "topics": ["city", "computer music", "piano"]
+  },
+  {
+    "title": "The Producer Taking Pop to the Future",
+    "author": "SOPHIE",
+    "year": 2018,
+    "link": "https://youtu.be/2ifh0tDrwBA",
+    "thumbnail": "https://img.youtube.com/vi/2ifh0tDrwBA/0.jpg",
+    "type": ["interview", "video"],
+    "topics": ["pop music", "", "", ""]
+  },
+  {
+    "title": "How virtual reality can create the ultimate empathy machine",
+    "author": "Chris Milk",
+    "year": 2015,
+    "link": "https://youtu.be/iXHil1TPxvA",
+    "thumbnail": "https://img.youtube.com/vi/iXHil1TPxvA/0.jpg",
+    "type": ["lecture", "video"],
+    "topics": ["VR", "empathy", "", ""]
+  },
+  {
+    "title": "The City as an Artwork",
+    "author": "The Pulsa Group",
+    "year": 1972,
+    "link": "https://archive.org/details/TheCityAsAnArtwork",
+    "thumbnail": "",
+    "type": ["statement"],
+    "topics": ["city", "art", "", ""]
+  },
+  {
+    "title": "Those We've Lost",
+    "author": "",
+    "year": 2020,
+    "link": "https://www.nytimes.com/interactive/2020/obituaries/people-died-coronavirus-obituaries.html",
+    "thumbnail": "",
+    "type": ["website"],
+    "topics": ["Covid-19", "journalism", "", ""]
+  },
+  {
+    "title": "Acoustical Quanta and the Theory of Hearing",
+    "author": "Denis Gabor",
+    "year": 1947,
+    "link": "https://www.nature.com/articles/159591a0.pdf",
+    "thumbnail": "",
+    "type": ["journal article"],
+    "topics": ["signal processing", "auditory perception", "", ""]
+  },
+  {
+    "title": "",
+    "author": "Timothy Morton",
+    "year": 2014,
+    "link": "http://ecologywithoutnature.blogspot.com/2014/11/attunement.html",
+    "thumbnail": "",
+    "type": ["blog post"],
+    "topics": ["hyperobject", "attunement", "deep listening"]
+  },
+  {
+    "title": "How pots and pans became tools of protests, from Chile to Myanmar",
+    "author": "Ruby Mellen",
+    "year": 2021,
+    "link": "https://www.washingtonpost.com/world/2021/02/04/pots-pans-protests-myanmar-coup/",
+    "thumbnail": "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/DEKIXAC4DYI6XOF55Y3LDTIYX4.jpg",
+    "type": ["newspaper article"],
+    "topics": ["sound", "journalism"]
+  }
+]
